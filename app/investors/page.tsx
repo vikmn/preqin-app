@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 
 const InvestorsPage = async () => {
@@ -6,7 +7,7 @@ const InvestorsPage = async () => {
     return (
         <div>
             <ul>
-                {investors.map((investor:any) => (<li key={investor.id}>{investor.firm_id}{investor.firm_name}</li>))}
+                {investors.map((investor:any) => (<li key={investor.id}><Link href={`./investors/${investor.firm_id}`}>{investor.firm_id}{investor.firm_name}</Link></li>))}
             </ul>
         </div>
     );
