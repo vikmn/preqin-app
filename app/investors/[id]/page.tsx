@@ -2,9 +2,10 @@ import Commitment from "@/app/Components/InvestorCommitment";
 
 const InvestorPage = async ({ params }: { params: { id: string } })  => (
     <div>
-        <div>
-            <h1 className='text-4xl'>ID : {params.id}</h1>
+        <div className='p-4 text-2xl'>
+            <span>ID:</span>
+            <span>{params.id}</span>
         </div>
-       <Commitment/>
+        <Commitment/>
     </div>)
 export default InvestorPage;
