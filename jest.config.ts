@@ -1,4 +1,5 @@
 import type { Config } from 'jest'
+import '@testing-library/jest-dom/extend-expect'
 import nextJest from 'next/jest.js'
 
 const createJestConfig = nextJest({
