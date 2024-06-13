@@ -8,9 +8,8 @@ interface AssetCommitment{
     "amount": string
 }
 
-const fetchInvestorCommitment = async ():Promise<AssetCommitment[]> => {
-    console.log("blah")
-    const url = 'http://localhost:8000/api/investor/commitment/RE/2670';
+const fetchInvestorCommitment = async (firmId:number,assetClass:string):Promise<AssetCommitment[]> => {
+    const url = `http://localhost:8000/api/investor/commitment/s${assetClass.toLowerCase()}/${firmId}`;
     await new Promise((resolve) => setTimeout(resolve, 3000));
     const response = await fetch(url);
     let commitments: AssetCommitment[] = await response.json();
@@ -21,13 +20,14 @@ const fetchInvestorCommitment = async ():Promise<AssetCommitment[]> => {
     ]
     return commitments;
 };
-const Commitment =()=> {
+const Commitment =(props:{firmId:number})=> {
+    const {firmId}= props
     const [commitments, setCommitments] = useState<AssetCommitment[]>([])
     return(<div>
         <div className='p-4 text-2xl'>
             <span>Asset Class:</span>
             <span>
-                <select onChange={async (e) => setCommitments(await fetchInvestorCommitment())
+                <select onChange={async (e) => setCommitments(await fetchInvestorCommitment(firmId,e.target.value))
                 }>
                     <option value="PE"> Private Equity</option>
                     <option value="PD">Private Debt</option>
